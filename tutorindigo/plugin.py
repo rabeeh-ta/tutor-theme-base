@@ -11,10 +11,10 @@ config = {
     "defaults": {
         "VERSION": __version__,
         "WELCOME_MESSAGE": "Learning in more dimensions",
-        "PRIMARY_COLOR": "#3b85ff",  # cool blue
+        "PRIMARY_COLOR": "#009cc7",  # cool blue
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
-        # tutor config save --set INDIGO_FOOTER_NAV_LINKS=[] --set INDIGO_FOOTER_LEGAL_LINKS=[]
+        # tutor config save --set BLEND_ED_FOOTER_NAV_LINKS=[] --set BLEND_ED_FOOTER_LEGAL_LINKS=[]
         "FOOTER_NAV_LINKS": [
             {"title": "About", "url": "/about"},
             {"title": "Contact", "url": "/contact"},
@@ -33,7 +33,7 @@ config = {
 
 # Theme templates
 hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
-    pkg_resources.resource_filename("tutorindigo", "templates")
+    pkg_resources.resource_filename("tutorblended", "templates")
 )
 # This is where the theme is rendered in the openedx build directory
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
@@ -49,9 +49,9 @@ hooks.Filters.ENV_PATTERNS_INCLUDE.add_item(
 
 # Load all configuration entries
 hooks.Filters.CONFIG_DEFAULTS.add_items(
-    [(f"INDIGO_{key}", value) for key, value in config["defaults"].items()]
+    [(f"BLEND_ED_{key}", value) for key, value in config["defaults"].items()]
 )
 hooks.Filters.CONFIG_UNIQUE.add_items(
-    [(f"INDIGO_{key}", value) for key, value in config["unique"].items()]
+    [(f"BLEND_ED_{key}", value) for key, value in config["unique"].items()]
 )
 hooks.Filters.CONFIG_OVERRIDES.add_items(list(config["overrides"].items()))
