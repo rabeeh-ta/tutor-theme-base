@@ -10,7 +10,7 @@ config = {
     # Add here your new settings
     "defaults": {
         "VERSION": __version__,
-        "WELCOME_MESSAGE": "The place for all your online learning",
+        "WELCOME_MESSAGE": "Learning in more dimensions",
         "PRIMARY_COLOR": "#3b85ff",  # cool blue
         # Footer links are dictionaries with a "title" and "url"
         # To remove all links, run:
@@ -22,8 +22,8 @@ config = {
         "FOOTER_LEGAL_LINKS": [
             {"title": "Terms of service", "url": "/tos"},
             {
-                "title": "Indigo theme for Open edX",
-                "url": "https://github.com/overhangio/tutor-indigo",
+                "title": "Blend-ed theme for Open edX",
+                "url": "https://github.com/blend-ed/tutor-blend-ed-theme",
             },
         ],
     },
@@ -38,13 +38,13 @@ hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
 # This is where the theme is rendered in the openedx build directory
 hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     [
-        ("indigo", "build/openedx/themes"),
+        ("blend-ed-theme", "build/openedx/themes"),
     ],
 )
 
 # Force the rendering of scss files, even though they are included in a "partials" directory
 hooks.Filters.ENV_PATTERNS_INCLUDE.add_item(
-    r"indigo/lms/static/sass/partials/lms/theme/"
+    r"blend-ed-theme/lms/static/sass/partials/lms/theme/"
 )
 
 # Load all configuration entries
