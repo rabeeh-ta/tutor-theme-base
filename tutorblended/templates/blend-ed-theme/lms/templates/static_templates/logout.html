@@ -5,7 +5,6 @@
 {% block title %}{% trans "Signed Out" as tmsg %}{{ tmsg | force_escape }} | {{ block.super }}{% endblock %}
 
 {% block body %}
-    <!-- Replace the entire body content with the React component's HTML representation -->
     <div style="text-align: center; height: 100vh; position: relative;">
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
             <h2 style="font-weight: bold; color: #000;">Did you know?</h2>
@@ -20,7 +19,6 @@
             <span style="font-weight: bold; color: #000; margin-left: 0.5rem;">Loading</span>
         </div>
     </div>
-    <!-- End of React component's HTML representation -->
 
     <script type="text/javascript" src="{% static 'js/jquery.allLoaded.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/logout.js' %}"></script>
