@@ -18,9 +18,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{% static 'js/jquery.allLoaded.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/logout.js' %}"></script>
-
     <div id="iframeContainer" style="visibility: hidden" data-redirect-url="{{ target }}">
         {% for uri in logout_uris %}
             <iframe src="{{ uri }}"></iframe>
