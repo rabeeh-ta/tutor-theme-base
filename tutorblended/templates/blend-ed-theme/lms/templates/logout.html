@@ -1,4 +1,8 @@
-{% block title %} Logging Out {% endblock %}
+{% extends "main_django.html" %}
+{% load i18n static %}
+{% load django_markup %}
+
+{% block title %}{% trans "Signed Out" as tmsg %}{{ tmsg | force_escape }} | {{ block.super }}{% endblock %}
 
 {% block body %}
     <div style="text-align: center; height: 100vh; position: relative;">
@@ -15,6 +19,9 @@
             <span style="font-weight: bold; color: #000; margin-left: 0.5rem;">Loading</span>
         </div>
     </div>
+
+    <script type="text/javascript" src="{% static 'js/jquery.allLoaded.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/logout.js' %}"></script>
 
     <div id="iframeContainer" style="visibility: hidden" data-redirect-url="{{ target }}">
         {% for uri in logout_uris %}
