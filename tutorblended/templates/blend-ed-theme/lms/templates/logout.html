@@ -1,4 +1,3 @@
-{% raw %}
 {% extends "main_django.html" %}
 {% load i18n static %}
 {% load django_markup %}
@@ -6,18 +5,36 @@
 {% block title %}{% trans "Signed Out" as tmsg %}{{ tmsg | force_escape }} | {{ block.super }}{% endblock %}
 
 {% block body %}
-
-    <!-- Insert the grayish spinner code here -->
+    <!-- Style for overlay -->
     <style>
+        /* Set the overlay to cover the entire viewport */
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80vh;
-            margin: 0;
-            background-color: #f0f0f0; /* Grayish background color */
+            position: relative;
         }
 
+        /* Style for the overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: 9999; /* Ensure it's above other content */
+        }
+
+        /* Style for the logout content */
+        .logout-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff; /* White background */
+            padding: 20px;
+            z-index: 10000; /* Ensure it's above the overlay */
+        }
+
+        /* Spinner styles */
         .spinner-container {
             text-align: center;
         }
@@ -37,17 +54,25 @@
         }
     </style>
 
-    <div class="spinner-container">
-        <div class="spinner"></div>
-    </div>
+    <!-- Overlay -->
+    <div class="overlay"></div>
 
-    <script type="text/javascript" src="{% static 'js/jquery.allLoaded.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/logout.js' %}"></script>
+    <!-- Logout content -->
+    <div class="logout-content">
+        <!-- Spinner -->
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
 
-    <div id="iframeContainer" style="visibility: hidden" data-redirect-url="{{ target }}">
-        {% for uri in logout_uris %}
-            <iframe src="{{ uri }}"></iframe>
-        {% endfor %}
+        <!-- Scripts -->
+        <script type="text/javascript" src="{% static 'js/jquery.allLoaded.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/logout.js' %}"></script>
+
+        <!-- Iframes for logout URIs -->
+        <div id="iframeContainer" style="visibility: hidden" data-redirect-url="{{ target }}">
+            {% for uri in logout_uris %}
+                <iframe src="{{ uri }}"></iframe>
+            {% endfor %}
+        </div>
     </div>
 {% endblock body %}
-{% endraw %}
