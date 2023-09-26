@@ -1,4 +1,8 @@
-{% block title %}Logging Out{% endblock %}
+{% extends "main_django.html" %}
+{% load i18n static %}
+{% load django_markup %}
+
+{% block title %}{% trans "Signed Out" as tmsg %}{{ tmsg | force_escape }} | {{ block.super }}{% endblock %}
 
 {% block body %}
     <div style="text-align: center; height: 100vh; position: relative;">
@@ -8,18 +12,14 @@
                 Blended learning allows students to take advantage of the best aspects of both online and in-person learning, creating a more well-rounded and engaging educational experience.
             </p>
         </div>
-        <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); margin-bottom: 6rem;">
-            <div style="display: inline-block; border: 2px solid #000; border-radius: 50%; padding: 1rem; background-color: transparent; animation: spin 2s linear infinite;">
-                Loading
-            </div>
-            <span style="font-weight: bold; color: #000; margin-left: 0.5rem;">Loading</span>
-        </div>
     </div>
 
-    <style>
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
+    <script type="text/javascript" src="{% static 'js/jquery.allLoaded.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/logout.js' %}"></script>
+
+    <div id="iframeContainer" style="visibility: hidden" data-redirect-url="{{ target }}">
+        {% for uri in logout_uris %}
+            <iframe src="{{ uri }}"></iframe>
+        {% endfor %}
+    </div>
 {% endblock body %}
