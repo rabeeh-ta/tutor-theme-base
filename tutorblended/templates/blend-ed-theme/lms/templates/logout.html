@@ -1,8 +1,13 @@
 {% raw %}
+{% extends "main_django.html" %}
 {% load i18n static %}
+{% load django_markup %}
+
+{% block title %}{% trans "Signed Out" as tmsg %}{{ tmsg | force_escape }} | {{ block.super }}{% endblock %}
 
 {% block body %}
 
+    <!-- Insert the grayish spinner code here -->
     <style>
         body {
             display: flex;
@@ -35,7 +40,6 @@
     <div class="spinner-container">
         <div class="spinner"></div>
     </div>
-    <!-- End of grayish spinner code -->
 
     <script type="text/javascript" src="{% static 'js/jquery.allLoaded.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/logout.js' %}"></script>
