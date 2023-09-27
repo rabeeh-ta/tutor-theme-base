@@ -72,6 +72,10 @@
             <div class="spinner"></div>
         </div>
 
+        <!-- Scripts -->
+        <script type="text/javascript" src="{% static 'js/jquery.allLoaded.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/logout.js' %}"></script>
+
         <!-- Iframes for logout URIs -->
         <div id="iframeContainer" style="visibility: hidden" data-redirect-url="{{ target }}">
             {% for uri in logout_uris %}
